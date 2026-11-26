@@ -1,7 +1,7 @@
 ## Title: JOB-BOARD
 
 ## Description: Job-Board project is an app that allows users to search and apply for job and also as an Employer can post a job. 
-[Live Demo link](https://job-board-mitchelledev.netlify.app) 
+[Live Demo link](https://job-board-mitchelledev.netlify.app)  
 ## Features: 
 • Sign up.
 • sign in.

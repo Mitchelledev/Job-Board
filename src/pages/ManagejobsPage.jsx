@@ -30,8 +30,8 @@ function ManagejobsPage() {
     <div className="min-h-screen w-full bg-[#0B132B]">
       <header className="sticky top-0 z-10 border-b border-slate-200 bg-white px-6 py-4">
         <div className="flex items-center justify-between max-w-7xl mx-auto">
-          <div className="text-lg font-semibold text-slate-900">JobBoard</div>
-          <div className="flex gap-3">
+          <div className="text-lg font-semibold text-slate-900 -translate-x-3">JobBoard</div>
+          <div className="flex gap-3"> 
             <button
               onClick={() => navigate("/post-job")}
               className="px-4 py-2 text-sm border border-slate-300 rounded-lg hover:bg-slate-50 cursor-pointer"

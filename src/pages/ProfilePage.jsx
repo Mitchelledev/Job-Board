@@ -96,38 +96,38 @@ function ProfilePage() {
       </div>
     ); 
   }
-
-  return (
-    <div className="min-h-screen w-full bg-[#0B132B]"> 
-      <header className="sticky top-0 z-10 border-b border-slate-200 bg-white px-6 py-4">
-        <div className="flex items-center justify-between max-w-7xl mx-auto">
+   return (
+    <div className="min-h-screen w-full bg-[#0B132B] overflow-x-hidden"> 
+      {/* Header */}
+      <header className="sticky top-0 z-10 border-b border-slate-200 bg-white px-4 sm:px-6 py-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between max-w-7xl mx-auto w-full">
           <div className="text-lg font-semibold text-slate-900">JobBoard</div>
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-2">
             {user.isEmployer && (
               <>
-              <button
-              onClick={() => navigate("/post-job")}
-              className="px-4 py-2 text-sm border border-slate-300 rounded-lg hover:bg-slate-50 cursor-pointer"
-              >
-                post job
-              </button>
-              <button
-              onClick={() => navigate("/manage-jobs")}
-              className="px-4 py-2 text-sm border border-slate-300 rounded-lg hover:bg-slate-50 cursor-pointer" 
-              >
-                Manage jobs
-              </button>
-              </> 
+                <button
+                  onClick={() => navigate("/post-job")}
+                  className="px-3 py-2 text-sm border border-slate-300 rounded-lg hover:bg-slate-50 cursor-pointer"
+                >
+                  Post a job
+                </button>
+                <button
+                  onClick={() => navigate("/manage-jobs")}
+                  className="px-3 py-2 text-sm border border-slate-300 rounded-lg hover:bg-slate-50 cursor-pointer"
+                >
+                  Manage jobs
+                </button>
+              </>
             )}
             <button
               onClick={() => navigate("/home")}
-              className="px-4 py-2 text-sm border border-slate-300 rounded-lg hover:bg-slate-50 cursor-pointer"
+              className="px-3 py-2 text-sm border border-slate-300 rounded-lg hover:bg-slate-50 cursor-pointer"
             >
               Home
             </button>
             <button
               onClick={handleLogout}
-              className="px-4 py-2 text-sm text-white border border-slate-300 bg-indigo-600 rounded-lg hover:bg-indigo-700 cursor-pointer"
+              className="px-3 py-2 text-sm text-white bg-indigo-600 border border-indigo-600 rounded-lg hover:bg-indigo-700 cursor-pointer"
             >
               Logout
             </button>
@@ -135,20 +135,22 @@ function ProfilePage() {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-6 py-6">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-3xl font-semibold text-amber-200"> Profile</h1>
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 py-6">
+        {/* Title row: stacks on phones, row from sm up */}
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">
+          <h1 className="text-2xl sm:text-3xl font-semibold text-amber-200">Profile</h1>
           {isEditing ? (
-            <div className="flex gap-3">
+            <div className="flex gap-2">
               <button
-                onClick={handleSave} 
-                className="px-4 py-2 text-sm border border-slate-300 rounded-lg hover:bg-slate-50 cursor-pointer"
+                onClick={handleSave}
+                className="px-4 py-2 text-sm text-white border border-slate-300 rounded-lg hover:bg-slate-600 cursor-pointer"
               >
                 Save
               </button>
               <button
                 onClick={handleCancel}
-                className="px-4 py-2 text-sm border border-slate-300 rounded-lg hover:bg-slate-50 cursor-pointer"
+                className="px-4 py-2 text-sm text-white border border-slate-300 rounded-lg hover:bg-slate-600 cursor-pointer"
               >
                 Cancel
               </button>
@@ -156,14 +158,15 @@ function ProfilePage() {
           ) : (
             <button
               onClick={handleEdit}
-              className="px-4 py-2 text-sm text-white border border-slate-800 rounded-lg hover:bg-slate-600 cursor-pointer"
+              className="self-start sm:self-auto px-4 py-2 text-sm text-white border border-slate-800 rounded-lg hover:bg-slate-600 cursor-pointer"
             >
               Edit
             </button>
           )}
-        </div> 
+        </div>
 
-        <div className="bg-blue-100 border border-slate-200 rounded-lg p-6 flex flex-col gap-4">
+        {/* Profile card */}
+        <div className="bg-blue-100 border border-slate-200 rounded-lg p-4 sm:p-6 flex flex-col gap-4 w-full min-w-0">
           {!user.isEmployer && (
             <>
               {renderField("Name", "name")}
@@ -171,11 +174,11 @@ function ProfilePage() {
               {renderField("Location", "location")}
               {renderField("Skills", "skills")}
               {renderField("Experience", "experience")}
-              { <div className="border-b border-slate-200 pb-4"> 
-                <p className="text-sm text-slate-600 mb-1">job applied</p>
-                <p className="text-base font-medium text-slate-900">{appliedCount}</p> 
-              </div> }
-            </> 
+              <div className="border-b border-slate-200 pb-4">
+                <p className="text-sm text-slate-600 mb-1">Jobs applied</p>
+                <p className="text-base font-medium text-slate-900">{appliedCount}</p>
+              </div>
+            </>
           )}
 
           {user.isEmployer && (
@@ -185,15 +188,15 @@ function ProfilePage() {
               {renderField("Skills required", "skillsRequired")}
               {renderField("Experience required", "experienceRequired")}
               <div className="border-b border-slate-200 pb-4">
-                <p className="text-sm text-slate-600 mb-1">job posted</p>
-                <p className="text-base font font-medium text-slate-900">{postedCount}</p>
+                <p className="text-sm text-slate-600 mb-1">Jobs posted</p>
+                <p className="text-base font-medium text-slate-900">{postedCount}</p>
               </div>
             </>
           )}
 
-          <div> 
+          <div>
             <p className="text-sm text-slate-600 mb-1">Email</p>
-            <p className="text-base font-medium text-slate-900">{user.email}</p>
+            <p className="text-base font-medium text-slate-900 break-all">{user.email}</p>
           </div>
         </div>
       </div>
